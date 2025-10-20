@@ -1,0 +1,799 @@
+'use client';
+
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+import { useState, useEffect } from 'react';
+import {
+  Code, Palette, Search, Cloud, Megaphone, Bot, Layers, Zap,
+  CheckCircle, ArrowRight, Sparkles, Star, Users, Clock, TrendingUp,
+  ShoppingCart, Smartphone, Globe, Server, Briefcase, Package,
+  BarChart, Mail, MessageSquare, Settings, ChevronLeft, ChevronRight, Shield
+} from 'lucide-react';
+
+export default function ServicesPage() {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+
+  const services = [
+    {
+      icon: Code,
+      title: 'Web Development',
+      description: 'Custom websites and web applications built with cutting-edge technologies',
+      color: 'from-blue-500 to-cyan-500',
+      glowColor: 'rgba(59, 130, 246, 0.5)',
+      shadowColor: '#3b82f6',
+      subcategories: [
+        {
+          icon: Globe,
+          name: 'WordPress Website',
+          price: '₹15,000 - ₹30,000',
+          description: 'Professional CMS-based websites',
+          features: ['Custom Themes', 'Plugin Integration', 'SEO Ready', 'Responsive Design', 'Admin Training'],
+          deliveryTime: '2-3 weeks',
+        },
+        {
+          icon: Code,
+          name: 'Full-Stack Web App',
+          price: '₹40,000 - ₹80,000',
+          description: 'Complete MERN/MEAN stack solutions',
+          features: ['React/Angular', 'Node.js Backend', 'Database Design', 'API Development', 'Authentication'],
+          deliveryTime: '4-6 weeks',
+        },
+        {
+          icon: ShoppingCart,
+          name: 'E-Commerce Website',
+          price: '₹35,000 - ₹60,000',
+          description: 'Online stores with payment gateway',
+          features: ['Shopping Cart', 'Payment Gateway', 'Inventory Management', 'Order Tracking', 'Admin Panel'],
+          deliveryTime: '4-5 weeks',
+        },
+        {
+          icon: Briefcase,
+          name: 'Business Website',
+          price: '₹20,000 - ₹40,000',
+          description: 'Corporate and portfolio sites',
+          features: ['Responsive Design', 'CMS Integration', 'Analytics', 'Contact Forms', 'Blog'],
+          deliveryTime: '2-4 weeks',
+        },
+        {
+          icon: Zap,
+          name: 'Landing Page',
+          price: '₹10,000 - ₹20,000',
+          description: 'High-converting landing pages',
+          features: ['Fast Loading', 'SEO Optimized', 'Mobile First', 'Lead Capture', 'A/B Testing Ready'],
+          deliveryTime: '1-2 weeks',
+        },
+        {
+          icon: Server,
+          name: 'Web Portal',
+          price: '₹50,000+',
+          description: 'Enterprise-level portals',
+          features: ['User Management', 'Dashboard', 'API Integration', 'Role-based Access', 'Analytics'],
+          deliveryTime: '6-8 weeks',
+        },
+      ],
+    },
+    {
+      icon: Smartphone,
+      title: 'Application Development',
+      description: 'Native and cross-platform mobile applications',
+      color: 'from-purple-500 to-pink-500',
+      glowColor: 'rgba(168, 85, 247, 0.5)',
+      shadowColor: '#a855f7',
+      subcategories: [
+        {
+          icon: Smartphone,
+          name: 'Enterprise Mobile App',
+          price: '₹80,000 - ₹150,000',
+          description: 'Large-scale business applications',
+          features: ['Native iOS/Android', 'Real-time Sync', 'Advanced Security', 'Offline Support', 'Push Notifications'],
+          deliveryTime: '8-12 weeks',
+        },
+        {
+          icon: Package,
+          name: 'Moderate Business App',
+          price: '₹50,000 - ₹80,000',
+          description: 'Mid-size app with core features',
+          features: ['Cross-platform', 'Cloud Backend', 'Push Notifications', 'In-app Purchases', 'Analytics'],
+          deliveryTime: '6-8 weeks',
+        },
+        {
+          icon: Layers,
+          name: 'Basic Mobile App',
+          price: '₹30,000 - ₹50,000',
+          description: 'Simple and functional apps',
+          features: ['React Native', 'Firebase', 'Basic Features', 'App Store Submission', 'Support'],
+          deliveryTime: '4-6 weeks',
+        },
+        {
+          icon: ShoppingCart,
+          name: 'E-Commerce App',
+          price: '₹60,000 - ₹100,000',
+          description: 'Mobile shopping experience',
+          features: ['Product Catalog', 'Payment Integration', 'Order Tracking', 'Wishlist', 'Reviews'],
+          deliveryTime: '6-10 weeks',
+        },
+        {
+          icon: MessageSquare,
+          name: 'Social Media App',
+          price: '₹70,000 - ₹120,000',
+          description: 'Community and social platforms',
+          features: ['User Profiles', 'Real-time Chat', 'Feed System', 'Media Sharing', 'Notifications'],
+          deliveryTime: '8-12 weeks',
+        },
+        {
+          icon: Briefcase,
+          name: 'On-Demand Service App',
+          price: '₹65,000 - ₹110,000',
+          description: 'Uber-like service apps',
+          features: ['Booking System', 'GPS Tracking', 'Payment Gateway', 'Driver/User Apps', 'Admin Panel'],
+          deliveryTime: '8-10 weeks',
+        },
+      ],
+    },
+    {
+      icon: Palette,
+      title: 'UI/UX Design',
+      description: 'Beautiful, intuitive designs that engage users',
+      color: 'from-pink-500 to-rose-500',
+      glowColor: 'rgba(236, 72, 153, 0.5)',
+      shadowColor: '#ec4899',
+      subcategories: [
+        {
+          icon: Palette,
+          name: 'Complete UI/UX Design',
+          price: '₹25,000 - ₹50,000',
+          description: 'Full design system and prototypes',
+          features: ['User Research', 'Wireframes', 'High-Fidelity Mockups', 'Prototypes', 'Design System'],
+          deliveryTime: '3-5 weeks',
+        },
+        {
+          icon: Smartphone,
+          name: 'Mobile App Design',
+          price: '₹20,000 - ₹40,000',
+          description: 'iOS and Android app interfaces',
+          features: ['Material Design', 'iOS Guidelines', 'Animations', 'Icon Design', 'Clickable Prototype'],
+          deliveryTime: '2-4 weeks',
+        },
+        {
+          icon: Globe,
+          name: 'Website Design',
+          price: '₹15,000 - ₹35,000',
+          description: 'Responsive web interfaces',
+          features: ['Desktop & Mobile', 'Interactive Elements', 'Modern Design', 'Style Guide', 'Assets'],
+          deliveryTime: '2-3 weeks',
+        },
+        {
+          icon: Sparkles,
+          name: 'Brand Identity',
+          price: '₹18,000 - ₹40,000',
+          description: 'Logo, colors, and brand guidelines',
+          features: ['Logo Design', 'Color Palette', 'Typography', 'Brand Guidelines', 'Stationery'],
+          deliveryTime: '2-4 weeks',
+        },
+        {
+          icon: Layers,
+          name: 'Design System',
+          price: '₹30,000 - ₹60,000',
+          description: 'Component library and guidelines',
+          features: ['Component Library', 'Documentation', 'Figma/Sketch Files', 'Design Tokens', 'Scalable'],
+          deliveryTime: '4-6 weeks',
+        },
+        {
+          icon: Code,
+          name: 'UI Animation',
+          price: '₹12,000 - ₹25,000',
+          description: 'Micro-interactions and animations',
+          features: ['Lottie Animations', 'CSS Animations', 'Interactive Prototypes', 'Motion Guidelines', 'Implementation Support'],
+          deliveryTime: '1-3 weeks',
+        },
+      ],
+    },
+    {
+      icon: Search,
+      title: 'SEO Services',
+      description: 'Boost your visibility and rank higher',
+      color: 'from-green-500 to-emerald-500',
+      glowColor: 'rgba(34, 197, 94, 0.5)',
+      shadowColor: '#22c55e',
+      subcategories: [
+        {
+          icon: Search,
+          name: 'Technical SEO',
+          price: '₹15,000/month',
+          description: 'Site optimization and fixes',
+          features: ['Site Speed Optimization', 'Mobile Optimization', 'Schema Markup', 'XML Sitemaps', 'Crawl Error Fixes'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: BarChart,
+          name: 'Local SEO',
+          price: '₹12,000/month',
+          description: 'Rank in local searches',
+          features: ['Google My Business', 'Local Citations', 'Review Management', 'Local Link Building', 'NAP Optimization'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: Globe,
+          name: 'On-Page SEO',
+          price: '₹10,000/month',
+          description: 'Content and keyword optimization',
+          features: ['Keyword Research', 'Content Optimization', 'Meta Tags', 'Internal Linking', 'Image Optimization'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: Zap,
+          name: 'Off-Page SEO',
+          price: '₹18,000/month',
+          description: 'Link building and authority',
+          features: ['Quality Backlinks', 'Guest Posting', 'Social Signals', 'Brand Mentions', 'Authority Building'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: Package,
+          name: 'E-Commerce SEO',
+          price: '₹20,000/month',
+          description: 'Product page optimization',
+          features: ['Product Schema', 'Category Optimization', 'Rich Snippets', 'Product Feed', 'Shopping Ads'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: Settings,
+          name: 'SEO Audit',
+          price: '₹8,000 - ₹15,000',
+          description: 'Complete site analysis',
+          features: ['Technical Audit', 'Content Audit', 'Competitor Analysis', 'Action Plan', 'Priority Recommendations'],
+          deliveryTime: '1-2 weeks',
+        },
+      ],
+    },
+    {
+      icon: Cloud,
+      title: 'Cloud Optimization',
+      description: 'AWS, GCP, and Azure infrastructure management',
+      color: 'from-orange-500 to-red-500',
+      glowColor: 'rgba(249, 115, 22, 0.5)',
+      shadowColor: '#f97316',
+      subcategories: [
+        {
+          icon: Cloud,
+          name: 'AWS Configuration',
+          price: '₹25,000 - ₹50,000',
+          description: 'Complete AWS setup and optimization',
+          features: ['EC2, S3, RDS Setup', 'Load Balancing', 'Auto Scaling', 'Security Groups', 'Cost Optimization'],
+          deliveryTime: '3-5 weeks',
+        },
+        {
+          icon: Server,
+          name: 'Azure Setup',
+          price: '₹25,000 - ₹50,000',
+          description: 'Microsoft Azure implementation',
+          features: ['Virtual Machines', 'App Services', 'SQL Database', 'Storage Accounts', 'Monitoring'],
+          deliveryTime: '3-5 weeks',
+        },
+        {
+          icon: Globe,
+          name: 'Google Cloud Platform',
+          price: '₹25,000 - ₹50,000',
+          description: 'GCP infrastructure setup',
+          features: ['Compute Engine', 'Cloud Storage', 'BigQuery', 'Cloud Functions', 'Networking'],
+          deliveryTime: '3-5 weeks',
+        },
+        {
+          icon: BarChart,
+          name: 'Cost Optimization',
+          price: '₹15,000 - ₹30,000',
+          description: 'Reduce cloud spending',
+          features: ['Usage Analysis', 'Right-sizing', 'Reserved Instances', 'Spot Instances', 'Budget Alerts'],
+          deliveryTime: '2-3 weeks',
+        },
+        {
+          icon: Settings,
+          name: 'DevOps Setup',
+          price: '₹30,000 - ₹60,000',
+          description: 'CI/CD pipeline implementation',
+          features: ['Jenkins/GitLab CI', 'Docker/Kubernetes', 'Automated Testing', 'Deployment Pipeline', 'Monitoring'],
+          deliveryTime: '4-6 weeks',
+        },
+        {
+          icon: Zap,
+          name: 'Migration Services',
+          price: '₹40,000 - ₹80,000',
+          description: 'Move to cloud infrastructure',
+          features: ['Data Migration', 'App Migration', 'Zero Downtime', 'Testing', 'Optimization'],
+          deliveryTime: '6-8 weeks',
+        },
+      ],
+    },
+    {
+      icon: Megaphone,
+      title: 'Digital Marketing',
+      description: 'Strategic marketing campaigns that deliver results',
+      color: 'from-yellow-500 to-orange-500',
+      glowColor: 'rgba(234, 179, 8, 0.5)',
+      shadowColor: '#eab308',
+      subcategories: [
+        {
+          icon: BarChart,
+          name: 'Social Media Marketing',
+          price: '₹15,000/month',
+          description: 'Grow your social presence',
+          features: ['Content Creation', 'Post Scheduling', 'Engagement', 'Community Management', 'Analytics'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: Search,
+          name: 'PPC Advertising',
+          price: '₹20,000/month',
+          description: 'Google Ads and paid campaigns',
+          features: ['Campaign Setup', 'Keyword Targeting', 'Ad Copywriting', 'A/B Testing', 'ROI Optimization'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: Mail,
+          name: 'Email Marketing',
+          price: '₹10,000/month',
+          description: 'Automated email campaigns',
+          features: ['Campaign Design', 'List Management', 'Automation', 'A/B Testing', 'Analytics'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: Sparkles,
+          name: 'Content Marketing',
+          price: '₹12,000/month',
+          description: 'Blog posts and articles',
+          features: ['Blog Writing', 'SEO Content', 'Content Calendar', 'Distribution', 'Performance Tracking'],
+          deliveryTime: 'Ongoing',
+        },
+        {
+          icon: Megaphone,
+          name: 'Influencer Marketing',
+          price: '₹25,000/campaign',
+          description: 'Partner with influencers',
+          features: ['Influencer Research', 'Outreach', 'Campaign Management', 'Content Approval', 'ROI Tracking'],
+          deliveryTime: '3-4 weeks',
+        },
+        {
+          icon: BarChart,
+          name: 'Analytics & Reporting',
+          price: '₹8,000/month',
+          description: 'Data-driven insights',
+          features: ['GA4 Setup', 'Custom Reports', 'Dashboard', 'Insights', 'Recommendations'],
+          deliveryTime: 'Ongoing',
+        },
+      ],
+    },
+    {
+      icon: Bot,
+      title: 'AI Chatbot',
+      description: 'Intelligent chatbots for customer support',
+      color: 'from-cyan-500 to-blue-500',
+      glowColor: 'rgba(6, 182, 212, 0.5)',
+      shadowColor: '#06b6d4',
+      subcategories: [
+        {
+          icon: MessageSquare,
+          name: 'Customer Support Bot',
+          price: '₹30,000 - ₹50,000',
+          description: '24/7 automated customer service',
+          features: ['Natural Language Processing', 'Multi-language Support', 'CRM Integration', 'Analytics', 'Training'],
+          deliveryTime: '4-6 weeks',
+        },
+        {
+          icon: ShoppingCart,
+          name: 'E-Commerce Bot',
+          price: '₹35,000 - ₹60,000',
+          description: 'Shopping assistant chatbot',
+          features: ['Product Recommendations', 'Order Tracking', 'Cart Management', 'Payment Support', 'Personalization'],
+          deliveryTime: '5-7 weeks',
+        },
+        {
+          icon: Briefcase,
+          name: 'Lead Generation Bot',
+          price: '₹25,000 - ₹45,000',
+          description: 'Qualify and capture leads',
+          features: ['Lead Qualification', 'Appointment Booking', 'CRM Sync', 'Email Integration', 'Analytics'],
+          deliveryTime: '3-5 weeks',
+        },
+        {
+          icon: Bot,
+          name: 'AI Voice Assistant',
+          price: '₹40,000 - ₹70,000',
+          description: 'Voice-enabled AI assistant',
+          features: ['Speech Recognition', 'Text-to-Speech', 'Multi-platform', 'Custom Commands', 'Integration'],
+          deliveryTime: '6-8 weeks',
+        },
+        {
+          icon: MessageSquare,
+          name: 'WhatsApp Bot',
+          price: '₹20,000 - ₹40,000',
+          description: 'WhatsApp Business automation',
+          features: ['Auto-replies', 'Broadcasts', 'Media Support', 'Templates', 'Analytics'],
+          deliveryTime: '3-4 weeks',
+        },
+        {
+          icon: Sparkles,
+          name: 'Custom AI Bot',
+          price: '₹50,000+',
+          description: 'Tailored AI solution',
+          features: ['GPT Integration', 'Custom Training', 'Advanced Features', 'API Integration', 'Maintenance'],
+          deliveryTime: '8-12 weeks',
+        },
+      ],
+    },
+    {
+      icon: Layers,
+      title: 'Custom Software',
+      description: 'Bespoke software solutions for your business',
+      color: 'from-indigo-500 to-purple-500',
+      glowColor: 'rgba(99, 102, 241, 0.5)',
+      shadowColor: '#6366f1',
+      subcategories: [
+        {
+          icon: Briefcase,
+          name: 'Enterprise Software',
+          price: '₹100,000+',
+          description: 'Large-scale business solutions',
+          features: ['Scalable Architecture', 'Multi-user Support', 'Integration', 'Security', 'Support'],
+          deliveryTime: '12-16 weeks',
+        },
+        {
+          icon: Package,
+          name: 'CRM System',
+          price: '₹60,000 - ₹120,000',
+          description: 'Customer relationship management',
+          features: ['Contact Management', 'Sales Pipeline', 'Email Integration', 'Reports', 'Mobile App'],
+          deliveryTime: '8-12 weeks',
+        },
+        {
+          icon: BarChart,
+          name: 'ERP System',
+          price: '₹150,000+',
+          description: 'Enterprise resource planning',
+          features: ['Inventory Management', 'Accounting', 'HR Management', 'Reporting', 'Multi-location'],
+          deliveryTime: '16-20 weeks',
+        },
+        {
+          icon: Settings,
+          name: 'Inventory Management',
+          price: '₹40,000 - ₹80,000',
+          description: 'Stock and warehouse management',
+          features: ['Stock Tracking', 'Barcode Scanning', 'Alerts', 'Reports', 'Multi-warehouse'],
+          deliveryTime: '6-8 weeks',
+        },
+        {
+          icon: Layers,
+          name: 'Booking System',
+          price: '₹35,000 - ₹70,000',
+          description: 'Appointment and reservation system',
+          features: ['Calendar Management', 'Payment Integration', 'Notifications', 'Analytics', 'Mobile Support'],
+          deliveryTime: '5-7 weeks',
+        },
+        {
+          icon: Code,
+          name: 'Custom Dashboard',
+          price: '₹30,000 - ₹60,000',
+          description: 'Data visualization and analytics',
+          features: ['Real-time Data', 'Interactive Charts', 'Export Options', 'User Permissions', 'API Integration'],
+          deliveryTime: '4-6 weeks',
+        },
+      ],
+    },
+  ];
+
+  const testimonials = [
+    {
+      name: 'Rajesh Kumar',
+      company: 'TechStart India',
+      image: '👨‍💼',
+      rating: 5,
+      text: 'Exceptional work! They delivered our e-commerce platform ahead of schedule and it exceeded all expectations.',
+    },
+    {
+      name: 'Priya Sharma',
+      company: 'Digital Solutions Ltd',
+      image: '👩‍💼',
+      rating: 5,
+      text: 'The UI/UX design transformed our user engagement. Highly professional team!',
+    },
+    {
+      name: 'Amit Patel',
+      company: 'CloudTech Systems',
+      image: '👨‍💻',
+      rating: 5,
+      text: 'Saved us 40% on cloud costs while improving performance. Outstanding service!',
+    },
+  ];
+
+  return (
+    <div className="min-h-screen pt-32 pb-24">
+      {/* Hero Section */}
+      <section className="px-4 sm:px-6 lg:px-8 mb-24">
+        <div className="max-w-7xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border border-primary-500/30 rounded-full px-6 py-2 mb-8"
+          >
+            <Sparkles className="w-4 h-4 text-primary-400" />
+            <span className="text-sm text-gray-300">Complete Software Solutions</span>
+          </motion.div>
+          
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6"
+          >
+            <span className="gradient-text">Our Services</span>
+          </motion.h1>
+          
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-xl text-gray-400 max-w-3xl mx-auto"
+          >
+            Everything you need to succeed in the digital world. From concept to deployment, we've got you covered.
+          </motion.p>
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section ref={ref} className="px-4 sm:px-6 lg:px-8 mb-24">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8" style={{ perspective: '1000px' }}>
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                whileHover={{ 
+                  y: -10,
+                  scale: 1.02,
+                  rotateX: 5,
+                  transition: { duration: 0.3 }
+                }}
+                className="group relative"
+                style={{ transformStyle: 'preserve-3d' }}
+              >
+                {/* Glow effect */}
+                <motion.div 
+                  className="absolute -inset-1 rounded-3xl blur-2xl opacity-0 group-hover:opacity-75 transition-opacity duration-500"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${service.glowColor}, transparent)`,
+                  }}
+                ></motion.div>
+
+                {/* Card */}
+                <div 
+                  className="relative rounded-3xl p-8 border transition-all duration-500 overflow-hidden"
+                  style={{
+                    background: 'rgba(15, 15, 35, 0.6)',
+                    backdropFilter: 'blur(20px)',
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
+                  }}
+                >
+                  {/* Animated background gradient */}
+                  <motion.div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                    style={{ 
+                      background: `radial-gradient(circle at top left, ${service.glowColor}, transparent 70%)`,
+                    }}
+                  ></motion.div>
+
+                  {/* Popular badge */}
+                  {service.popularity >= 90 && (
+                    <div className="absolute top-6 right-6 bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-1 rounded-full text-xs font-bold text-white flex items-center space-x-1">
+                      <Sparkles className="w-3 h-3" />
+                      <span>Popular</span>
+                    </div>
+                  )}
+                  
+                  <div className="relative z-10">
+                    {/* Icon with 3D effect */}
+                    <motion.div
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6, ease: 'easeInOut' }}
+                      className={`bg-gradient-to-br ${service.color} p-4 rounded-2xl w-fit mb-6 group-hover:shadow-2xl transition-shadow duration-500`}
+                      style={{ 
+                        boxShadow: `0 10px 40px -10px ${service.shadowColor}40`,
+                      }}
+                    >
+                      <service.icon className="w-8 h-8 text-white" />
+                    </motion.div>
+                    
+                    <h3 
+                      className="text-3xl font-bold mb-3 transition-all duration-300"
+                      style={{
+                        background: `linear-gradient(135deg, #ffffff, ${service.shadowColor})`,
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}
+                    >
+                      {service.title}
+                    </h3>
+                    <p className="text-gray-400 mb-6">{service.description}</p>
+                    
+                    {/* Pricing and delivery info */}
+                    <div className="flex items-center justify-between mb-6 pb-6 border-b border-white/10">
+                      <div>
+                        <p className="text-sm text-gray-500 mb-1">Starting from</p>
+                        <p className="text-2xl font-bold" style={{ color: service.shadowColor }}>
+                          {service.priceStart}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm text-gray-500 mb-1">Delivery</p>
+                        <div className="flex items-center space-x-1 text-gray-300">
+                          <Clock className="w-4 h-4" />
+                          <span className="font-semibold">{service.deliveryTime}</span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <ul className="space-y-3 mb-6">
+                      {service.features.map((feature, idx) => (
+                        <motion.li 
+                          key={idx} 
+                          className="flex items-start space-x-3"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={inView ? { opacity: 1, x: 0 } : {}}
+                          transition={{ delay: index * 0.1 + idx * 0.05 }}
+                        >
+                          <CheckCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: service.shadowColor }} />
+                          <span className="text-gray-300">{feature}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full group/btn flex items-center justify-center space-x-2 font-semibold py-3 rounded-xl transition-all duration-300"
+                      style={{
+                        background: `linear-gradient(135deg, ${service.shadowColor}, transparent)`,
+                        border: `2px solid ${service.shadowColor}`,
+                        color: '#ffffff',
+                      }}
+                    >
+                      <span>Get Started</span>
+                      <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-2 transition-transform" />
+                    </motion.button>
+                  </div>
+
+                  {/* 3D Corner effect */}
+                  <div 
+                    className="absolute bottom-0 right-0 w-32 h-32 rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: `radial-gradient(circle at bottom right, ${service.glowColor}, transparent)`,
+                    }}
+                  ></div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="px-4 sm:px-6 lg:px-8 mb-24">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+              <span className="text-white">What Our </span>
+              <span className="gradient-text">Clients Say</span>
+            </h2>
+            <p className="text-xl text-gray-400">Real results from real businesses</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -10, scale: 1.03 }}
+                className="glass rounded-2xl p-6 border border-white/10 hover:border-primary-500/50 transition-all"
+              >
+                <div className="flex items-center space-x-1 mb-4">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-300 mb-4 italic">"{testimonial.text}"</p>
+                <div className="flex items-center space-x-3">
+                  <div className="text-4xl">{testimonial.image}</div>
+                  <div>
+                    <p className="font-semibold text-white">{testimonial.name}</p>
+                    <p className="text-sm text-gray-400">{testimonial.company}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section with urgency */}
+      <section className="px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl p-12 text-center border-2 overflow-hidden"
+            style={{
+              background: 'rgba(15, 15, 35, 0.8)',
+              backdropFilter: 'blur(20px)',
+              borderColor: 'rgba(14, 165, 233, 0.3)',
+            }}
+          >
+            {/* Animated background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500/20 via-transparent to-accent-500/20"></div>
+            
+            <div className="relative z-10">
+              {/* Urgency badge */}
+              <motion.div
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="inline-flex items-center space-x-2 bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2 mb-6"
+              >
+                <TrendingUp className="w-4 h-4 text-red-400" />
+                <span className="text-sm text-red-400 font-semibold">Limited Slots for This Month!</span>
+              </motion.div>
+
+              <h2 className="text-4xl font-bold mb-4 text-white">
+                Ready to Transform Your Business?
+              </h2>
+              <p className="text-xl text-gray-400 mb-8">
+                Join 200+ satisfied clients who've scaled their business with our solutions
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-primary-500/50 transition-all"
+                >
+                  Start Your Project Now
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-white/20 text-white px-8 py-4 rounded-full font-semibold text-lg hover:border-primary-500/50 hover:bg-white/5 transition-all"
+                >
+                  Schedule Free Consultation
+                </motion.button>
+              </div>
+
+              {/* Trust signals */}
+              <div className="flex items-center justify-center space-x-6 text-sm text-gray-400">
+                <div className="flex items-center space-x-2">
+                  <Users className="w-4 h-4" />
+                  <span>200+ Clients</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  <span>4.9/5 Rating</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  <span>100% Satisfaction</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+    </div>
+  );
+}
