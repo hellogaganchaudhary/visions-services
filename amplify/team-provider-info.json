@@ -15,7 +15,7 @@
       "function": {
         "visionsfunction": {
           "deploymentBucketName": "amplify-visionsmain-dev-be993-deployment",
-          "s3Key": "amplify-builds/visionsfunction-577938622b33536f3042-build.zip"
+          "s3Key": "amplify-builds/visionsfunction-7472496d5a6f484d776b-build.zip"
         }
       },
       "api": {
