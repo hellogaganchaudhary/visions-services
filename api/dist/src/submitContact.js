@@ -7,20 +7,15 @@ exports.submitContact = submitContact;
 const functions_1 = require("@azure/functions");
 const db_1 = require("../database/db");
 const validator_1 = __importDefault(require("validator"));
+const cors_1 = require("./utils/cors");
 async function submitContact(request, context) {
-    var _a, _b;
+    var _a;
     context.log('Contact form submission request received');
-    // CORS headers
-    const headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': ((_a = process.env.ALLOWED_ORIGINS) === null || _a === void 0 ? void 0 : _a.split(',')[0]) || '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-    };
-    // Handle OPTIONS request for CORS
-    if (request.method === 'OPTIONS') {
-        return { status: 200, headers };
+    // Handle preflight OPTIONS request
+    if ((0, cors_1.isPreflight)(request)) {
+        return (0, cors_1.handlePreflight)(request);
     }
+    const headers = (0, cors_1.getCorsHeaders)(request);
     try {
         // Parse request body
         const body = await request.json();
@@ -58,7 +53,7 @@ async function submitContact(request, context) {
             body.name.trim(),
             body.email.trim().toLowerCase(),
             body.phone.trim(),
-            ((_b = body.message) === null || _b === void 0 ? void 0 : _b.trim()) || null,
+            ((_a = body.message) === null || _a === void 0 ? void 0 : _a.trim()) || null,
             ipAddress,
             userAgent
         ]);

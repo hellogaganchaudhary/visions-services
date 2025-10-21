@@ -7,20 +7,15 @@ exports.submitQuote = submitQuote;
 const functions_1 = require("@azure/functions");
 const db_1 = require("../database/db");
 const validator_1 = __importDefault(require("validator"));
+const cors_1 = require("./utils/cors");
 async function submitQuote(request, context) {
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d;
     context.log('Quote request submission received');
-    // CORS headers
-    const headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': ((_a = process.env.ALLOWED_ORIGINS) === null || _a === void 0 ? void 0 : _a.split(',')[0]) || '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-    };
-    // Handle OPTIONS request for CORS
-    if (request.method === 'OPTIONS') {
-        return { status: 200, headers };
+    // Handle preflight OPTIONS request
+    if ((0, cors_1.isPreflight)(request)) {
+        return (0, cors_1.handlePreflight)(request);
     }
+    const headers = (0, cors_1.getCorsHeaders)(request);
     try {
         // Parse request body
         const body = await request.json();
@@ -84,13 +79,13 @@ async function submitQuote(request, context) {
             body.name.trim(),
             body.email.trim().toLowerCase(),
             body.phone.trim(),
-            ((_b = body.company) === null || _b === void 0 ? void 0 : _b.trim()) || null,
+            ((_a = body.company) === null || _a === void 0 ? void 0 : _a.trim()) || null,
             body.serviceType.trim(),
             body.projectDescription.trim(),
             body.budgetRange.trim(),
-            ((_c = body.timeline) === null || _c === void 0 ? void 0 : _c.trim()) || null,
-            ((_d = body.websiteUrl) === null || _d === void 0 ? void 0 : _d.trim()) || null,
-            ((_e = body.preferredContactMethod) === null || _e === void 0 ? void 0 : _e.trim()) || 'email',
+            ((_b = body.timeline) === null || _b === void 0 ? void 0 : _b.trim()) || null,
+            ((_c = body.websiteUrl) === null || _c === void 0 ? void 0 : _c.trim()) || null,
+            ((_d = body.preferredContactMethod) === null || _d === void 0 ? void 0 : _d.trim()) || 'email',
             priority,
             source,
             ipAddress,

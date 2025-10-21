@@ -1,6 +1,7 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { query } from "../database/db";
 import * as jwt from "jsonwebtoken";
+import { getCorsHeaders, isPreflight, handlePreflight } from "./utils/cors";
 
 function verifyToken(request: HttpRequest): any {
   const authHeader = request.headers.get('authorization');
@@ -21,16 +22,12 @@ function verifyToken(request: HttpRequest): any {
 export async function getContacts(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log('Get contacts request received');
 
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGINS?.split(',')[0] || '*',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  };
-
-  if (request.method === 'OPTIONS') {
-    return { status: 200, headers };
+  // Handle preflight OPTIONS request
+  if (isPreflight(request)) {
+    return handlePreflight(request);
   }
+
+  const headers = getCorsHeaders(request);
 
   try {
     // Verify authentication

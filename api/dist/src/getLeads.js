@@ -37,6 +37,7 @@ exports.getLeads = getLeads;
 const functions_1 = require("@azure/functions");
 const db_1 = require("../database/db");
 const jwt = __importStar(require("jsonwebtoken"));
+const cors_1 = require("./utils/cors");
 function verifyToken(request) {
     const authHeader = request.headers.get('authorization');
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -51,17 +52,12 @@ function verifyToken(request) {
     }
 }
 async function getLeads(request, context) {
-    var _a;
     context.log('Get leads request received');
-    const headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': ((_a = process.env.ALLOWED_ORIGINS) === null || _a === void 0 ? void 0 : _a.split(',')[0]) || '*',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    };
-    if (request.method === 'OPTIONS') {
-        return { status: 200, headers };
+    // Handle preflight OPTIONS request
+    if ((0, cors_1.isPreflight)(request)) {
+        return (0, cors_1.handlePreflight)(request);
     }
+    const headers = (0, cors_1.getCorsHeaders)(request);
     try {
         // Verify authentication
         const user = verifyToken(request);

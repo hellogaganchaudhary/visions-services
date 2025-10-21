@@ -1,6 +1,7 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/functions";
 import { query } from "../database/db";
 import validator from "validator";
+import { getCorsHeaders, isPreflight, handlePreflight } from "./utils/cors";
 
 interface QuoteRequestData {
   name: string;
@@ -18,18 +19,12 @@ interface QuoteRequestData {
 export async function submitQuote(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log('Quote request submission received');
 
-  // CORS headers
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGINS?.split(',')[0] || '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-  };
-
-  // Handle OPTIONS request for CORS
-  if (request.method === 'OPTIONS') {
-    return { status: 200, headers };
+  // Handle preflight OPTIONS request
+  if (isPreflight(request)) {
+    return handlePreflight(request);
   }
+
+  const headers = getCorsHeaders(request);
 
   try {
     // Parse request body

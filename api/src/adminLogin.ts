@@ -2,6 +2,7 @@ import { app, HttpRequest, HttpResponseInit, InvocationContext } from "@azure/fu
 import { query } from "../database/db";
 import * as jwt from "jsonwebtoken";
 import * as bcrypt from "bcryptjs";
+import { getCorsHeaders, isPreflight, handlePreflight } from "./utils/cors";
 
 interface LoginData {
   username: string;
@@ -11,16 +12,12 @@ interface LoginData {
 export async function adminLogin(request: HttpRequest, context: InvocationContext): Promise<HttpResponseInit> {
   context.log('Admin login request received');
 
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': process.env.ALLOWED_ORIGINS?.split(',')[0] || '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type',
-  };
-
-  if (request.method === 'OPTIONS') {
-    return { status: 200, headers };
+  // Handle preflight OPTIONS request
+  if (isPreflight(request)) {
+    return handlePreflight(request);
   }
+
+  const headers = getCorsHeaders(request);
 
   try {
     const body = await request.json() as LoginData;

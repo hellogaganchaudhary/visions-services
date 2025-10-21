@@ -38,18 +38,14 @@ const functions_1 = require("@azure/functions");
 const db_1 = require("../database/db");
 const jwt = __importStar(require("jsonwebtoken"));
 const bcrypt = __importStar(require("bcryptjs"));
+const cors_1 = require("./utils/cors");
 async function adminLogin(request, context) {
-    var _a;
     context.log('Admin login request received');
-    const headers = {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': ((_a = process.env.ALLOWED_ORIGINS) === null || _a === void 0 ? void 0 : _a.split(',')[0]) || '*',
-        'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type',
-    };
-    if (request.method === 'OPTIONS') {
-        return { status: 200, headers };
+    // Handle preflight OPTIONS request
+    if ((0, cors_1.isPreflight)(request)) {
+        return (0, cors_1.handlePreflight)(request);
     }
+    const headers = (0, cors_1.getCorsHeaders)(request);
     try {
         const body = await request.json();
         if (!body.username || !body.password) {
