@@ -54,7 +54,7 @@ This is a production-ready full-stack Next.js 15 application featuring:
 
 ### Frontend
 - **Next.js 15** - React framework with App Router
-- **React 19** - Latest React features
+- **React 18** - React library (v18 for Three.js compatibility)
 - **TypeScript** - Type safety
 - **Tailwind CSS** - Utility-first CSS
 - **Framer Motion** - Smooth animations
@@ -459,4 +459,4 @@ For support, email: info@visions.services
 
 ---
 
-**Built with ❤️ using Next.js 15, React 19, and TypeScript**
+**Built with ❤️ using Next.js 15, React 18, and TypeScript**
