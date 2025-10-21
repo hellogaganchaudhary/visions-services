@@ -5,7 +5,8 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Lock, Loader2, AlertCircle } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
+// Use relative URL to leverage Next.js API proxy
+const API_URL = '/api';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -34,6 +35,7 @@ export default function AdminLoginPage() {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // Important for CORS with credentials
         body: JSON.stringify(formData)
       });
 
