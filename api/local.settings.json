@@ -1,0 +1,20 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "",
+    "POSTGRES_HOST": "visions.postgres.database.azure.com",
+    "POSTGRES_DATABASE": "visions",
+    "POSTGRES_USER": "Gagan",
+    "POSTGRES_PASSWORD": "Services@1507",
+    "POSTGRES_PORT": "5432",
+    "POSTGRES_SSL": "true",
+    "DB_HOST": "visions.postgres.database.azure.com",
+    "DB_NAME": "visions",
+    "DB_USER": "Gagan",
+    "DB_PASSWORD": "Services@1507",
+    "DB_PORT": "5432",
+    "JWT_SECRET": "techvision-super-secret-jwt-key-change-in-production-2024",
+    "ALLOWED_ORIGINS": "http://localhost:3000,http://localhost:3001,https://red-grass-0a2c21e0f.3.azurestaticapps.net"
+  }
+}

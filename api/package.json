@@ -1,0 +1,30 @@
+{
+  "name": "techvision-api",
+  "version": "1.0.0",
+  "description": "Azure Functions API for TechVision Admin Panel",
+  "main": "dist/src/**/*.js",
+  "scripts": {
+    "start": "func start",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prestart": "npm run build",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.5.0",
+    "pg": "^8.11.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "validator": "^13.11.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@types/pg": "^8.10.9",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/validator": "^13.11.8",
+    "azure-functions-core-tools": "^4.0.5455",
+    "typescript": "^5.3.3"
+  }
+}
