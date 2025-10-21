@@ -1,0 +1,43 @@
+{
+  "api": {
+    "visionapi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "visionsfunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "visionsfunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_visionsfunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "visionsfunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_visionsfunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "visionsfunction"
+        }
+      ]
+    }
+  }
+}
