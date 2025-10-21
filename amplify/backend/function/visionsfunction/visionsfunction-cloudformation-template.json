@@ -72,11 +72,11 @@
             },
             "POSTGRES_HOST": "visions.postgres.database.azure.com",
             "POSTGRES_DATABASE": "visions",
-            "POSTGRES_USER": "visionadmin",
-            "POSTGRES_PASSWORD": "Vision@2024",
+            "POSTGRES_USER": "Gagan",
+            "POSTGRES_PASSWORD": "Services@1507",
             "POSTGRES_PORT": "5432",
             "POSTGRES_SSL": "true",
-            "JWT_SECRET": "your-jwt-secret-key-change-in-production-2024"
+            "JWT_SECRET": "techvision-super-secret-jwt-key-for-admin-authentication-change-in-production"
           }
         },
         "Role": {
