@@ -10,10 +10,10 @@
     "dev": "concurrently \"npm run dev:next\" \"npm run dev:api\" --names \"NEXT,API\" --prefix-colors \"cyan,yellow\"",
     "dev:next": "next dev",
     "dev:api": "npm run start --workspace=api",
-    "build": "npm run build:next && npm run build:api",
+    "build": "npm run build:api && npm run build:next",
     "build:next": "next build",
     "build:api": "npm run build --workspace=api",
-    "start": "npm run start:next && npm run start:api",
+    "start": "npm run start:next",
     "start:next": "next start",
     "start:api": "npm run start --workspace=api",
     "lint": "next lint",
@@ -23,8 +23,7 @@
     "clean:all": "npm run clean && rm -rf node_modules api/node_modules",
     "setup": "npm install && npm run build:api",
     "prod": "npm run build && npm run start",
-    "test": "npm run test --workspaces --if-present",
-    "postinstall": "npm run build:api"
+    "test": "npm run test --workspaces --if-present"
   },
   "dependencies": {
     "@react-three/drei": "^9.108.3",

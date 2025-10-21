@@ -14,20 +14,20 @@
   },
   "dependencies": {
     "@azure/functions": "^4.5.0",
-    "bcryptjs": "^2.4.3",
-    "dotenv": "^16.4.5",
-    "jsonwebtoken": "^9.0.2",
-    "pg": "^8.11.3",
-    "validator": "^13.11.0"
-  },
-  "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/node": "^20.11.5",
     "@types/pg": "^8.10.9",
     "@types/validator": "^13.11.8",
-    "azure-functions-core-tools": "^4.0.5455",
-    "typescript": "^5.3.3"
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.3",
+    "typescript": "^5.3.3",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "azure-functions-core-tools": "^4.0.5455"
   },
   "engines": {
     "node": ">=18.0.0"
