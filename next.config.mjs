@@ -14,9 +14,26 @@ const nextConfig = {
     };
     return config;
   },
+  // API proxy configuration for development
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: process.env.NEXT_PUBLIC_API_URL 
+          ? `${process.env.NEXT_PUBLIC_API_URL}/:path*`
+          : 'http://localhost:7071/api/:path*',
+      },
+    ];
+  },
   env: {
     CUSTOM_KEY: process.env.CUSTOM_KEY,
+    NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
   },
+  // Output configuration for production
+  output: 'standalone',
+  poweredByHeader: false,
+  compress: true,
 };
 
 export default nextConfig;
