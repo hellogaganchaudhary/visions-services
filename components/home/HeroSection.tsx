@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { ArrowRight, Sparkles, Zap } from 'lucide-react';
 
 const HeroSection = () => {
@@ -118,14 +119,16 @@ const HeroSection = () => {
             transition={{ delay: 0.5 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg flex items-center space-x-2 hover:shadow-2xl hover:shadow-primary-500/50 transition-all"
-            >
-              <span>Start Your Project</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </motion.button>
+            <Link href="/request-quote">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg flex items-center space-x-2 hover:shadow-2xl hover:shadow-primary-500/50 transition-all"
+              >
+                <span>Get Quote</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </motion.button>
+            </Link>
 
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -135,30 +138,6 @@ const HeroSection = () => {
               <Zap className="w-5 h-5 text-primary-400" />
               <span>View Our Work</span>
             </motion.button>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-white/10"
-          >
-            {[
-              { value: '500+', label: 'Projects Completed' },
-              { value: '200+', label: 'Happy Clients' },
-              { value: '50+', label: 'Team Members' },
-              { value: '99%', label: 'Client Satisfaction' },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.1 }}
-                className="space-y-2"
-              >
-                <div className="text-4xl font-bold gradient-text">{stat.value}</div>
-                <div className="text-sm text-gray-400">{stat.label}</div>
-              </motion.div>
-            ))}
           </motion.div>
         </motion.div>
       </div>

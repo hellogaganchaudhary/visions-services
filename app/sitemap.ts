@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://techvision.com"; // Replace with your actual domain
+  const baseUrl = "https://visions.services";
 
   // Static pages
   const staticPages = [

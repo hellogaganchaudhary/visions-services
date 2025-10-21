@@ -15,7 +15,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = generateSEO({
-  title: "TechVision - Next-Gen Software Solutions",
+  title: "Visions.services - Next-Gen Software Solutions",
   description: "Complete software development solutions including web apps, UI/UX design, SEO, cloud optimization (AWS/GCP/Azure), digital marketing, automation tools, and AI chatbots. Bharat Utsav Sale Oct 2025 - Mar 2026!",
   keywords: ["software development", "web design", "UI/UX", "SEO", "AWS", "GCP", "Azure", "digital marketing", "AI chatbot", "automation tools"],
 });

@@ -614,11 +614,10 @@ export default function ServicesPage() {
             />
             <motion.div
               animate={{
-                rotate: [0, 360],
-                scale: [1, 1.2, 1],
+                scale: [1, 1.05, 1],
               }}
               transition={{
-                duration: 3,
+                duration: 2,
                 repeat: Infinity,
               }}
             >
@@ -670,9 +669,8 @@ export default function ServicesPage() {
               <motion.div
                 key={i}
                 animate={{
-                  y: [0, -30, 0],
-                  rotate: [0, 10, -10, 0],
-                  opacity: [0.2, 0.5, 0.2],
+                  y: [0, -20, 0],
+                  opacity: [0.2, 0.4, 0.2],
                 }}
                 transition={{
                   duration: 5 + i,
@@ -733,11 +731,10 @@ export default function ServicesPage() {
           >
             <motion.div
               animate={{
-                scale: [1, 1.1, 1],
-                rotate: [0, 5, -5, 0],
+                scale: [1, 1.05, 1],
               }}
               transition={{
-                duration: 5,
+                duration: 3,
                 repeat: Infinity,
               }}
               className="inline-block mb-4"
@@ -770,8 +767,8 @@ export default function ServicesPage() {
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 50, rotateY: -20 }}
-                whileInView={{ opacity: 1, y: 0, rotateY: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ 
                   delay: index * 0.15,
@@ -779,9 +776,8 @@ export default function ServicesPage() {
                   type: "spring",
                 }}
                 whileHover={{ 
-                  y: -15, 
-                  scale: 1.03,
-                  rotateY: 5,
+                  y: -8, 
+                  scale: 1.01,
                 }}
                 className="relative group"
                 style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
@@ -831,16 +827,15 @@ export default function ServicesPage() {
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <motion.div
                         key={i}
-                        initial={{ scale: 0, rotate: -180 }}
-                        whileInView={{ scale: 1, rotate: 0 }}
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
                         transition={{ 
                           delay: index * 0.15 + i * 0.1,
                           type: "spring",
                           stiffness: 200,
                         }}
                         whileHover={{
-                          scale: 1.3,
-                          rotate: 360,
+                          scale: 1.15,
                         }}
                       >
                         <Star className="w-6 h-6 fill-yellow-400 text-yellow-400 drop-shadow-lg" />
@@ -1008,9 +1003,9 @@ export default function ServicesPage() {
               
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <motion.a
-                  href="/contact"
-                  whileHover={{ scale: 1.08, y: -5 }}
-                  whileTap={{ scale: 0.95 }}
+                  href="/request-quote"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
                   className="relative px-10 py-5 rounded-full font-bold inline-flex items-center justify-center space-x-3 overflow-hidden group"
                   style={{
                     background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
@@ -1029,7 +1024,7 @@ export default function ServicesPage() {
                     className="absolute inset-0 w-20 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
                   />
                   <Sparkles className="w-6 h-6 text-white relative z-10" />
-                  <span className="text-white relative z-10 text-lg">Start Your Project</span>
+                  <span className="text-white relative z-10 text-lg">Get Quote</span>
                   <motion.div
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -1039,13 +1034,13 @@ export default function ServicesPage() {
                 </motion.a>
                 
                 <motion.a
-                  href="/contact"
+                  href="/request-quote"
                   whileHover={{ 
-                    scale: 1.08,
-                    y: -5,
+                    scale: 1.05,
+                    y: -3,
                     borderColor: '#3b82f6',
                   }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.98 }}
                   className="relative px-10 py-5 rounded-full font-bold inline-flex items-center justify-center space-x-3 backdrop-blur-xl overflow-hidden group"
                   style={{
                     border: '2px solid rgba(59,130,246,0.5)',
@@ -1059,7 +1054,7 @@ export default function ServicesPage() {
                     }}
                   />
                   <Clock className="w-6 h-6 text-primary-400 relative z-10" />
-                  <span className="text-white relative z-10 text-lg">Schedule a Call</span>
+                  <span className="text-white relative z-10 text-lg">Get Quote</span>
                 </motion.a>
               </div>
 
@@ -1078,7 +1073,7 @@ export default function ServicesPage() {
                 ].map((badge, i) => (
                   <motion.div
                     key={i}
-                    whileHover={{ scale: 1.1, y: -5 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
                     className="flex items-center gap-2 px-4 py-2 rounded-full backdrop-blur-sm"
                     style={{
                       background: 'linear-gradient(135deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2))',
@@ -1154,36 +1149,14 @@ function ServiceCard({ service, index, inView }: { service: any; index: number; 
     const cardCenterX = rect.left + rect.width / 2;
     const cardCenterY = rect.top + rect.height / 2;
     
-    // Distance from cursor to card center
-    const distanceX = e.clientX - cardCenterX;
-    const distanceY = e.clientY - cardCenterY;
-    const distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
-    
-    // Magnetic attraction zone (300px radius)
-    const magneticZone = 300;
-    const magneticStrength = 0.3;
-    
-    if (distance < magneticZone) {
-      setIsNearCard(true);
-      // Calculate magnetic pull
-      const pullX = (distanceX / distance) * (magneticZone - distance) * magneticStrength;
-      const pullY = (distanceY / distance) * (magneticZone - distance) * magneticStrength;
-      setMagneticPosition({ x: pullX, y: pullY });
-    } else {
-      setIsNearCard(false);
-      setMagneticPosition({ x: 0, y: 0 });
-    }
-    
-    // 3D tilt effect
-    const x = (e.clientX - rect.left - rect.width / 2) / 20;
-    const y = (e.clientY - rect.top - rect.height / 2) / 20;
+    // Simple tilt effect (reduced from before)
+    const x = (e.clientX - rect.left - rect.width / 2) / 40;
+    const y = (e.clientY - rect.top - rect.height / 2) / 40;
     setMousePosition({ x, y });
   };
 
   const handleMouseLeave = () => {
     setMousePosition({ x: 0, y: 0 });
-    setMagneticPosition({ x: 0, y: 0 });
-    setIsNearCard(false);
   };
 
   const Icon = service.icon;
@@ -1191,12 +1164,10 @@ function ServiceCard({ service, index, inView }: { service: any; index: number; 
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 50, rotateX: -15 }}
+      initial={{ opacity: 0, y: 30 }}
       animate={inView ? { 
-        opacity: 1, 
-        x: magneticPosition.x,
-        y: magneticPosition.y,
-        rotateX: 0,
+        opacity: 1,
+        y: 0,
       } : {}}
       style={{ 
         y,
@@ -1206,11 +1177,8 @@ function ServiceCard({ service, index, inView }: { service: any; index: number; 
         transformStyle: 'preserve-3d',
       }}
       transition={{ 
-        duration: 0.8, 
-        delay: index * 0.15,
-        type: "spring",
-        stiffness: isNearCard ? 200 : 100,
-        damping: isNearCard ? 15 : 20,
+        duration: 0.6, 
+        delay: index * 0.1,
       }}
       className="relative group"
       onMouseMove={handleMouseMove}
@@ -1218,45 +1186,18 @@ function ServiceCard({ service, index, inView }: { service: any; index: number; 
     >
       <motion.div
         animate={{
-          rotateX: mousePosition.y * 0.5,
-          rotateY: mousePosition.x * 0.5,
-          scale: isNearCard ? 1.02 : 1,
+          scale: 1,
         }}
-        style={{ 
-          rotateX,
-          transformStyle: 'preserve-3d'
-        }}
-        transition={{ type: "spring", stiffness: 400, damping: 35 }}
+        transition={{ type: "spring", stiffness: 300, damping: 30 }}
         whileHover={{ 
-          y: -25,
-          scale: 1.05,
-          rotateX: mousePosition.y * 1,
-          rotateY: mousePosition.x * 1,
+          y: -8,
+          scale: 1.02,
           transition: { 
-            duration: 0.4,
-            type: "spring",
-            stiffness: 300,
-            damping: 20,
+            duration: 0.3,
           }
         }}
         className="relative h-full"
       >
-        {/* Magnetic Attraction Indicator */}
-        <AnimatePresence>
-          {isNearCard && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 0.3, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              className="absolute inset-0 rounded-2xl pointer-events-none"
-              style={{
-                border: `2px solid ${service.shadowColor}`,
-                boxShadow: `0 0 40px ${service.shadowColor}60`,
-              }}
-            />
-          )}
-        </AnimatePresence>
-
         {/* Animated Background Particles with Parallax */}
         <motion.div 
           className="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none"
@@ -1587,9 +1528,9 @@ function ServiceCard({ service, index, inView }: { service: any; index: number; 
         <AnimatePresence>
           {isExpanded && (
             <motion.div
-              initial={{ opacity: 0, height: 0, marginTop: 0, scale: 0.9, rotateX: -20 }}
-              animate={{ opacity: 1, height: 'auto', marginTop: 16, scale: 1, rotateX: 0 }}
-              exit={{ opacity: 0, height: 0, marginTop: 0, scale: 0.9, rotateX: 20 }}
+              initial={{ opacity: 0, height: 0, marginTop: 0, scale: 0.95 }}
+              animate={{ opacity: 1, height: 'auto', marginTop: 16, scale: 1 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0, scale: 0.95 }}
               transition={{ 
                 duration: 0.6,
                 type: "spring",
@@ -1719,10 +1660,9 @@ function ServiceCard({ service, index, inView }: { service: any; index: number; 
                 <div className="flex items-center justify-between mt-6">
                   <motion.button
                     whileHover={{ 
-                      scale: 1.15,
-                      rotate: -10,
+                      scale: 1.05,
                     }}
-                    whileTap={{ scale: 0.9 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={(e) => {
                       e.stopPropagation();
                       prevSlide();
@@ -1748,8 +1688,8 @@ function ServiceCard({ service, index, inView }: { service: any; index: number; 
                     {service.subcategories.map((_: any, i: number) => (
                       <motion.button
                         key={i}
-                        whileHover={{ scale: 1.3 }}
-                        whileTap={{ scale: 0.9 }}
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
                         onClick={(e) => {
                           e.stopPropagation();
                           setCurrentSlide(i);
@@ -1784,10 +1724,9 @@ function ServiceCard({ service, index, inView }: { service: any; index: number; 
 
                   <motion.button
                     whileHover={{ 
-                      scale: 1.15,
-                      rotate: 10,
+                      scale: 1.05,
                     }}
-                    whileTap={{ scale: 0.9 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={(e) => {
                       e.stopPropagation();
                       nextSlide();
@@ -1919,9 +1858,8 @@ function SubcategoryCard({ subcategory, color }: { subcategory: any; color: stri
       {/* Glowing Orbs */}
       <motion.div
         animate={{
-          scale: isHovered ? [1, 1.8, 1] : 1,
-          opacity: isHovered ? [0.4, 0.8, 0.4] : 0.2,
-          rotate: isHovered ? [0, 360] : 0,
+          scale: isHovered ? [1, 1.4, 1] : 1,
+          opacity: isHovered ? [0.4, 0.6, 0.4] : 0.2,
         }}
         transition={{
           duration: 3,
@@ -1936,9 +1874,8 @@ function SubcategoryCard({ subcategory, color }: { subcategory: any; color: stri
       />
       <motion.div
         animate={{
-          scale: isHovered ? [1, 1.6, 1] : 1,
-          opacity: isHovered ? [0.3, 0.7, 0.3] : 0.15,
-          rotate: isHovered ? [360, 0] : 0,
+          scale: isHovered ? [1, 1.3, 1] : 1,
+          opacity: isHovered ? [0.3, 0.5, 0.3] : 0.15,
         }}
         transition={{
           duration: 4,
@@ -1957,9 +1894,8 @@ function SubcategoryCard({ subcategory, color }: { subcategory: any; color: stri
         {/* Icon Container with Advanced Effects */}
         <motion.div
           whileHover={{ 
-            scale: 1.15,
-            rotate: [0, -5, 5, -5, 0],
-            y: -5,
+            scale: 1.08,
+            y: -3,
           }}
           transition={{ 
             duration: 0.5,

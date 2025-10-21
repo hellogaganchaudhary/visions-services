@@ -74,61 +74,6 @@ export default function TestimonialsSection({
           </p>
         </motion.div>
 
-        {/* Stats */}
-        {showStats && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16"
-          >
-            {/* Average Rating */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-yellow-500/10 rounded-lg mb-3">
-                <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-              </div>
-              <div className="text-3xl font-bold text-white mb-1">
-                {averageRating.toFixed(1)}
-              </div>
-              <div className="text-sm text-gray-400">Average Rating</div>
-            </div>
-
-            {/* Total Reviews */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-500/10 rounded-lg mb-3">
-                <Quote className="w-6 h-6 text-blue-400" />
-              </div>
-              <div className="text-3xl font-bold text-white mb-1">
-                {totalTestimonials}+
-              </div>
-              <div className="text-sm text-gray-400">Happy Clients</div>
-            </div>
-
-            {/* Projects Completed */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-green-500/10 rounded-lg mb-3">
-                <TrendingUp className="w-6 h-6 text-green-400" />
-              </div>
-              <div className="text-3xl font-bold text-white mb-1">
-                150+
-              </div>
-              <div className="text-sm text-gray-400">Projects Delivered</div>
-            </div>
-
-            {/* Success Rate */}
-            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center">
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-purple-500/10 rounded-lg mb-3">
-                <Award className="w-6 h-6 text-purple-400" />
-              </div>
-              <div className="text-3xl font-bold text-white mb-1">
-                98%
-              </div>
-              <div className="text-sm text-gray-400">Success Rate</div>
-            </div>
-          </motion.div>
-        )}
-
         {/* Testimonials Display */}
         {variant === 'carousel' ? (
           <motion.div

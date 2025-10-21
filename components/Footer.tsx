@@ -36,7 +36,7 @@ const Footer = () => {
               >
                 <Sparkles className="w-5 h-5 text-white" />
               </motion.div>
-              <span className="text-xl font-bold gradient-text">TechVision</span>
+              <span className="text-xl font-bold gradient-text">Visions.services</span>
             </div>
             <p className="text-gray-400 text-sm">
               Your complete software development partner. We build innovative solutions that drive business growth.
@@ -95,11 +95,11 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-3 text-gray-400 text-sm">
                 <Mail size={18} className="text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>info@techvision.com</span>
+                <span>support@visions.services</span>
               </li>
               <li className="flex items-start space-x-3 text-gray-400 text-sm">
                 <Phone size={18} className="text-primary-400 mt-0.5 flex-shrink-0" />
-                <span>+91 1234567890</span>
+                <span>+91 8894357155</span>
               </li>
               <li className="flex items-start space-x-3 text-gray-400 text-sm">
                 <MapPin size={18} className="text-primary-400 mt-0.5 flex-shrink-0" />
@@ -113,7 +113,7 @@ const Footer = () => {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-gray-400 text-sm text-center md:text-left">
-              © 2025 TechVision. All rights reserved.
+              © 2025 Visions.services. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <Link href="/privacy-policy" className="text-gray-400 hover:text-primary-400 transition-colors">

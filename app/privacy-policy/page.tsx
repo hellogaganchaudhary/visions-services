@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
             <section>
               <h2 className="text-2xl font-bold text-white mb-4">Introduction</h2>
               <p className="leading-relaxed">
-                At TechVision, we are committed to protecting your privacy and ensuring the security of your personal information. 
+                At Visions.services, we are committed to protecting your privacy and ensuring the security of your personal information. 
                 This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our 
                 website or use our services.
               </p>
@@ -46,7 +46,7 @@ export default function PrivacyPolicyPage() {
                 <li>Company name and business information</li>
                 <li>Project requirements and specifications</li>
                 <li>Payment and billing information</li>
-                <li>Communications between you and TechVision</li>
+                <li>Communications between you and Visions.services</li>
                 <li>Technical data such as IP address, browser type, and device information</li>
               </ul>
             </section>
@@ -153,8 +153,8 @@ export default function PrivacyPolicyPage() {
                 please contact us at:
               </p>
               <div className="bg-white/5 border border-white/10 rounded-lg p-6 space-y-2">
-                <p><strong className="text-white">Email:</strong> privacy@techvision.com</p>
-                <p><strong className="text-white">Phone:</strong> +91 1234567890</p>
+                <p><strong className="text-white">Email:</strong> support@visions.services</p>
+                <p><strong className="text-white">Phone:</strong> +91 8894357155</p>
                 <p><strong className="text-white">Address:</strong> India</p>
               </div>
             </section>

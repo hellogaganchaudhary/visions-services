@@ -2,16 +2,16 @@ import { Metadata } from "next";
 
 // Base URL configuration
 export const siteConfig = {
-  name: "TechVision Solutions",
+  name: "Visions.services",
   description: "Complete software development solutions including web apps, UI/UX design, SEO, cloud optimization (AWS/GCP/Azure), digital marketing, automation tools, and AI chatbots.",
-  url: "https://techvision.com", // Replace with your actual domain
+  url: "https://visions.services",
   ogImage: "/images/og-image.jpg",
   links: {
     twitter: "https://twitter.com/techvision",
     linkedin: "https://linkedin.com/company/techvision",
     github: "https://github.com/techvision",
   },
-  creator: "TechVision Solutions",
+  creator: "Visions.services",
   keywords: [
     "software development",
     "web development",

@@ -27,7 +27,7 @@ export const testimonials: Testimonial[] = [
     company: 'TechStartup India',
     image: '/testimonials/rajesh.jpg', // Placeholder - replace with actual images
     rating: 5,
-    text: "TechVision transformed our online presence completely! The website they built is not just beautiful but also highly functional. Our conversion rate increased by 150% within the first month. The team's attention to detail and commitment to deadlines was exceptional.",
+    text: "Visions.services transformed our online presence completely! The website they built is not just beautiful but also highly functional. Our conversion rate increased by 150% within the first month. The team's attention to detail and commitment to deadlines was exceptional.",
     service: 'Full-Stack Web Development',
     location: 'Mumbai, India',
     date: '2025-09-15',
@@ -117,7 +117,7 @@ export const testimonials: Testimonial[] = [
     company: 'CloudScale Systems',
     image: '/testimonials/meera.jpg',
     rating: 5,
-    text: 'Migrating to AWS was daunting, but TechVision made it seamless. They optimized our infrastructure, reduced costs by 40%, and improved performance significantly. Their cloud expertise and 24/7 support have been invaluable. True cloud experts!',
+    text: 'Migrating to AWS was daunting, but Visions.services made it seamless. They optimized our infrastructure, reduced costs by 40%, and improved performance significantly. Their cloud expertise and 24/7 support have been invaluable. True cloud experts!',
     service: 'Cloud Migration & Optimization',
     location: 'Hyderabad, India',
     date: '2025-04-12',

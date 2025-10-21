@@ -20,7 +20,6 @@ const Navbar = () => {
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/about', label: 'About Us' },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -42,7 +41,7 @@ const Navbar = () => {
               <Sparkles className="w-6 h-6 text-white" />
             </motion.div>
             <span className="text-2xl font-bold gradient-text font-space-grotesk">
-              TechVision
+              Visions.services
             </span>
           </Link>
 
@@ -62,13 +61,15 @@ const Navbar = () => {
             {/* Services Mega Menu */}
             <ServicesMegaMenu />
             
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-primary-500/50 transition-all"
-            >
-              Get Started
-            </motion.button>
+            <Link href="/request-quote">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-primary-500/50 transition-all"
+              >
+                Get Quote
+              </motion.button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -95,9 +96,11 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
-            <button className="w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-2 rounded-full font-semibold mt-4">
-              Get Started
-            </button>
+            <Link href="/request-quote" className="block" onClick={() => setIsOpen(false)}>
+              <button className="w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-2 rounded-full font-semibold mt-4">
+                Get Quote
+              </button>
+            </Link>
           </div>
         </div>
       )}

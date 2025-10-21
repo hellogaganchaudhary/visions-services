@@ -26,7 +26,7 @@ const FeaturesSection = () => {
     {
       icon: Users,
       title: 'Expert Team',
-      description: '50+ skilled developers, designers, and marketers',
+      description: 'Skilled developers, designers, and marketers',
     },
     {
       icon: Award,
@@ -51,7 +51,7 @@ const FeaturesSection = () => {
         >
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
             <span className="text-white">Why Choose </span>
-            <span className="gradient-text">TechVision?</span>
+            <span className="gradient-text">Visions.services?</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
             We combine technical excellence with creative innovation to deliver exceptional results

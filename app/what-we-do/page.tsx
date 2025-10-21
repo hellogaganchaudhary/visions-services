@@ -73,37 +73,6 @@ export default function WhatWeDoPage() {
     },
   ];
 
-  const statsData = [
-    {
-      value: 500,
-      suffix: '+',
-      label: 'Projects Completed',
-      icon: <CheckCircle className="w-8 h-8" />,
-      color: '#3b82f6',
-    },
-    {
-      value: 200,
-      suffix: '+',
-      label: 'Happy Clients',
-      icon: <Users className="w-8 h-8" />,
-      color: '#22c55e',
-    },
-    {
-      value: 98,
-      suffix: '%',
-      label: 'Satisfaction Rate',
-      icon: <Award className="w-8 h-8" />,
-      color: '#eab308',
-    },
-    {
-      value: 5,
-      suffix: '+',
-      label: 'Years Experience',
-      icon: <TrendingUp className="w-8 h-8" />,
-      color: '#a855f7',
-    },
-  ];
-
   const caseStudies = [
     {
       title: 'E-Commerce Platform',
@@ -278,26 +247,6 @@ export default function WhatWeDoPage() {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-              <span className="text-white">Our </span>
-              <span className="gradient-text">Impact</span>
-            </h2>
-            <p className="text-xl text-gray-400">Numbers that speak for themselves</p>
-          </motion.div>
-          
-          <StatsCounter stats={statsData} />
         </div>
       </section>
 

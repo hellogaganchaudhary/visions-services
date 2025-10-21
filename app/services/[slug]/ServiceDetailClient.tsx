@@ -448,7 +448,7 @@ export default function ServiceDetailClient({ allServices }: { allServices: any[
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <motion.a
-                  href="/contact"
+                  href="/request-quote"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
@@ -472,11 +472,11 @@ export default function ServiceDetailClient({ allServices }: { allServices: any[
                     className="absolute inset-0 w-20 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
                   />
                   <Rocket className="w-5 h-5 relative z-10" />
-                  <span className="relative z-10">Start Your Project</span>
+                  <span className="relative z-10">Get Quote</span>
                 </motion.a>
 
                 <motion.a
-                  href="/contact"
+                  href="/request-quote"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 }}
@@ -489,7 +489,7 @@ export default function ServiceDetailClient({ allServices }: { allServices: any[
                   }}
                 >
                   <MessageSquare className="w-5 h-5" style={{ color: currentCategory.categoryColor }} />
-                  <span className="text-white">Schedule Consultation</span>
+                  <span className="text-white">Get Quote</span>
                 </motion.a>
               </div>
             </div>
@@ -986,12 +986,12 @@ export default function ServiceDetailClient({ allServices }: { allServices: any[
               border: `1px solid ${currentCategory.categoryColor}40`,
             }}
           >
-            <h2 className="text-4xl font-bold mb-6 text-white">Ready to Get Started?</h2>
+            <h2 className="text-4xl font-bold mb-6 text-white">Ready to Get Your Quote?</h2>
             <p className="text-xl text-gray-300 mb-8">
               Let's bring your vision to life with {currentService.name}
             </p>
             <motion.a
-              href="/contact"
+              href="/request-quote"
               whileHover={{ 
                 scale: 1.05, 
                 y: -5,
@@ -1048,7 +1048,7 @@ export default function ServiceDetailClient({ allServices }: { allServices: any[
                 <Rocket className="w-6 h-6" />
               </motion.div>
               
-              <span className="relative z-10">Start Your Project Today</span>
+              <span className="relative z-10">Get Your Quote Today</span>
               
               {/* Arrow Icon with Slide Animation */}
               <motion.div

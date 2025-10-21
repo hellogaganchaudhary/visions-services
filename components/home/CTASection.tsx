@@ -45,25 +45,27 @@ const CTASection = () => {
             viewport={{ once: true }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <Link href="/contact">
+            <Link href="/request-quote">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="group bg-gradient-to-r from-primary-500 to-accent-500 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center space-x-2 hover:shadow-2xl hover:shadow-primary-500/50 transition-all"
               >
-                <span>Get Started Now</span>
+                <span>Get Quote Now</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
             </Link>
             
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group glass border border-primary-500/30 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center space-x-2 hover:border-primary-500 transition-all"
-            >
-              <Phone className="w-5 h-5 text-primary-400" />
-              <span>Schedule a Call</span>
-            </motion.button>
+            <Link href="/request-quote">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="group glass border border-primary-500/30 text-white px-8 py-4 rounded-full font-semibold text-lg flex items-center space-x-2 hover:border-primary-500 transition-all"
+              >
+                <Phone className="w-5 h-5 text-primary-400" />
+                <span>Get Quote</span>
+              </motion.button>
+            </Link>
           </motion.div>
 
           <motion.div
@@ -75,8 +77,8 @@ const CTASection = () => {
           >
             <Mail size={18} className="text-primary-400" />
             <span>or email us at</span>
-            <a href="mailto:info@techvision.com" className="text-primary-400 hover:text-primary-300 transition-colors">
-              info@techvision.com
+            <a href="mailto:support@visions.services" className="text-primary-400 hover:text-primary-300 transition-colors">
+              support@visions.services
             </a>
           </motion.div>
         </motion.div>

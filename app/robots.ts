@@ -14,6 +14,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/admin/"],
       },
     ],
-    sitemap: "https://techvision.com/sitemap.xml", // Replace with your actual domain
+    sitemap: "https://visions.services/sitemap.xml",
   };
 }

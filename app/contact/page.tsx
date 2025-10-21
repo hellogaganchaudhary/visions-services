@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Clock, Shield, Users, TrendingUp, AlertCircle } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -62,16 +64,37 @@ export default function ContactPage() {
     
     setIsSubmitting(true);
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setSubmitted(true);
-    setIsSubmitting(false);
-    
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
-    }, 5000);
+    try {
+      const response = await fetch(`${API_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || '',
+          message: `Service: ${formData.service}\n\n${formData.message}`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+        }, 5000);
+      } else {
+        setErrors({ submit: data.message || 'Failed to submit form. Please try again.' });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrors({ submit: 'Network error. Please check your connection and try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -83,37 +106,6 @@ export default function ContactPage() {
       setErrors({ ...errors, [name]: '' });
     }
   };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: 'Email Us',
-      content: 'info@techvision.com',
-      link: 'mailto:info@techvision.com',
-      color: '#3b82f6',
-    },
-    {
-      icon: Phone,
-      title: 'Call Us',
-      content: '+91 1234567890',
-      link: 'tel:+911234567890',
-      color: '#22c55e',
-    },
-    {
-      icon: MapPin,
-      title: 'Visit Us',
-      content: 'India',
-      link: '#',
-      color: '#a855f7',
-    },
-  ];
-
-  const trustSignals = [
-    { icon: Clock, label: '24-Hour Response', value: 'Guaranteed', color: '#3b82f6' },
-    { icon: Shield, label: 'Secure & Private', value: '100% Protected', color: '#22c55e' },
-    { icon: Users, label: 'Happy Clients', value: '200+', color: '#a855f7' },
-    { icon: TrendingUp, label: 'Success Rate', value: '98%', color: '#eab308' },
-  ];
 
   return (
     <div className="min-h-screen pt-32 pb-24">
@@ -135,90 +127,6 @@ export default function ContactPage() {
           >
             Have a project in mind? Let's discuss how we can help bring your vision to life
           </motion.p>
-        </div>
-      </section>
-
-      {/* Contact Info Cards */}
-      <section className="px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {contactInfo.map((info, index) => (
-              <motion.a
-                key={index}
-                href={info.link}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="relative group"
-                style={{ perspective: '1000px', transformStyle: 'preserve-3d' }}
-              >
-                <div 
-                  className="glass rounded-2xl p-8 text-center transition-all"
-                  style={{
-                    boxShadow: `0 20px 60px ${info.color}20`,
-                  }}
-                >
-                  <div 
-                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl"
-                    style={{ background: `${info.color}20` }}
-                  />
-                  
-                  <div className="relative z-10">
-                    <div 
-                      className="p-4 rounded-xl w-fit mx-auto mb-4"
-                      style={{
-                        background: `linear-gradient(135deg, ${info.color}40, ${info.color}20)`,
-                      }}
-                    >
-                      <info.icon className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-white mb-2">{info.title}</h3>
-                    <p className="text-gray-400">{info.content}</p>
-                  </div>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trust Signals */}
-      <section className="px-4 sm:px-6 lg:px-8 mb-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {trustSignals.map((signal, index) => {
-              const Icon = signal.icon;
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="relative group"
-                >
-                  <div 
-                    className="glass rounded-xl p-4 text-center"
-                    style={{
-                      boxShadow: `0 10px 30px ${signal.color}15`,
-                    }}
-                  >
-                    <div 
-                      className="w-12 h-12 mx-auto mb-3 rounded-lg flex items-center justify-center"
-                      style={{
-                        background: `linear-gradient(135deg, ${signal.color}40, ${signal.color}20)`,
-                      }}
-                    >
-                      <Icon className="w-6 h-6" style={{ color: signal.color }} />
-                    </div>
-                    <p className="text-sm font-semibold text-white mb-1">{signal.value}</p>
-                    <p className="text-xs text-gray-400">{signal.label}</p>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
         </div>
       </section>
 
@@ -327,7 +235,7 @@ export default function ContactPage() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 transition-colors"
-                      placeholder="+91 1234567890"
+                      placeholder="+91 8894357155"
                     />
                   </div>
 
@@ -434,6 +342,21 @@ export default function ContactPage() {
                     <span>No Obligation</span>
                   </div>
                 </div>
+
+                {/* Submit Error */}
+                {errors.submit && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="bg-red-500/10 border border-red-500/20 rounded-lg p-4 flex items-start gap-3"
+                  >
+                    <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-red-400 font-medium">Failed to send message</p>
+                      <p className="text-red-400/80 text-sm mt-1">{errors.submit}</p>
+                    </div>
+                  </motion.div>
+                )}
 
                 <motion.button
                   type="submit"
