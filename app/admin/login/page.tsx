@@ -5,9 +5,6 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Lock, Loader2, AlertCircle } from 'lucide-react';
 
-// Use relative URL to leverage Next.js API proxy
-const API_URL = '/api';
-
 export default function AdminLoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -30,12 +27,12 @@ export default function AdminLoginPage() {
     setErrorMessage('');
 
     try {
-      const response = await fetch(`${API_URL}/api-admin/login`, {
+      const response = await fetch('/api/api-admin/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Important for CORS with credentials
+        credentials: 'include',
         body: JSON.stringify(formData)
       });
 
