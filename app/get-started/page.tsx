@@ -4,8 +4,6 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight, CheckCircle2, Phone, Mail, Zap } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
-
 interface LeadFormData {
   name: string;
   phone: string;
@@ -41,7 +39,7 @@ export default function GetStartedPage() {
     const placeholderEmail = `adlead_${phoneDigits}_${timestamp}@visions.services`;
 
     try {
-      const response = await fetch(`${API_URL}/lead`, {
+      const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

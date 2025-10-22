@@ -5,8 +5,6 @@ import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, CheckCircle, Clock, Shield, Users, TrendingUp, AlertCircle } from 'lucide-react';
 import LoadingSpinner from '@/components/LoadingSpinner';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
-
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
@@ -65,7 +63,7 @@ export default function ContactPage() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch(`${API_URL}/contact`, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
