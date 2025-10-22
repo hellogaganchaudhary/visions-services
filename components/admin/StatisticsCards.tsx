@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Users, FileText, Clock, CheckCircle, XCircle, TrendingUp } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
-
 interface Statistics {
   contacts: {
     total: number;
@@ -43,13 +41,13 @@ export default function StatisticsCards() {
 
     try {
       const [contactsRes, leadsRes, quotesRes] = await Promise.all([
-        fetch(`${API_URL}/api-admin/contacts?limit=1`, {
+        fetch('/api/api-admin/contacts?limit=1', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch(`${API_URL}/api-admin/leads?limit=1`, {
+        fetch('/api/api-admin/leads?limit=1', {
           headers: { 'Authorization': `Bearer ${token}` }
         }),
-        fetch(`${API_URL}/api-admin/quotes?limit=1`, {
+        fetch('/api/api-admin/quotes?limit=1', {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       ]);

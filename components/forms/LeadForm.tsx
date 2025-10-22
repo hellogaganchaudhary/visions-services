@@ -13,8 +13,6 @@ interface LeadFormData {
   budget: string;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
-
 const budgetOptions = [
   '$5,000 - $10,000',
   '$10,000 - $25,000',
@@ -50,7 +48,7 @@ export default function LeadForm() {
     setErrorMessage('');
 
     try {
-      const response = await fetch(`${API_URL}/lead`, {
+      const response = await fetch('/api/lead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

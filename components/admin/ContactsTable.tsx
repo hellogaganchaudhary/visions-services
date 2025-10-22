@@ -15,8 +15,6 @@ import {
   Filter
 } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
-
 interface Contact {
   id: number;
   name: string;
@@ -43,7 +41,7 @@ export default function ContactsTable() {
 
     setLoading(true);
     try {
-      const url = new URL(`${API_URL}/api-admin/contacts`);
+      const url = new URL('/api/api-admin/contacts', window.location.origin);
       url.searchParams.append('page', page.toString());
       url.searchParams.append('limit', limit.toString());
       if (statusFilter !== 'all') {
@@ -75,7 +73,7 @@ export default function ContactsTable() {
 
     setUpdating(id);
     try {
-      const response = await fetch(`${API_URL}/api-admin/status`, {
+      const response = await fetch('/api/api-admin/status', {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,

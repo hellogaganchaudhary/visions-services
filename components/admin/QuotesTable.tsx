@@ -17,8 +17,6 @@ import {
   ExternalLink
 } from 'lucide-react';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
-
 interface Quote {
   id: number;
   name: string;
@@ -52,7 +50,7 @@ export default function QuotesTable() {
 
     setLoading(true);
     try {
-      const url = new URL(`${API_URL}/api-admin/quotes`);
+      const url = new URL('/api/api-admin/quotes', window.location.origin);
       url.searchParams.append('page', page.toString());
       url.searchParams.append('limit', limit.toString());
       if (statusFilter !== 'all') {
@@ -87,7 +85,7 @@ export default function QuotesTable() {
 
     setUpdating(id);
     try {
-      const response = await fetch(`${API_URL}/api-admin/status`, {
+      const response = await fetch('/api/api-admin/status', {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,

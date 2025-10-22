@@ -11,8 +11,6 @@ interface ContactFormData {
   message: string;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
-
 export default function ContactForm() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -37,7 +35,7 @@ export default function ContactForm() {
     setErrorMessage('');
 
     try {
-      const response = await fetch(`${API_URL}/contact`, {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

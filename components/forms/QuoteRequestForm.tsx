@@ -17,8 +17,6 @@ interface QuoteRequestData {
   preferredContactMethod: string;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7071/api';
-
 const serviceTypes = [
   'Web Development',
   'Mobile App Development',
@@ -79,7 +77,7 @@ export default function QuoteRequestForm() {
     setErrorMessage('');
 
     try {
-      const response = await fetch(`${API_URL}/quote`, {
+      const response = await fetch('/api/quote', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
