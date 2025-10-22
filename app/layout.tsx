@@ -7,6 +7,7 @@ import PageTransition from "@/components/PageTransition";
 import ServicesNavigation from "@/components/ServicesNavigation";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { generateSEO } from "@/lib/seo";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({ 
@@ -27,6 +28,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+    <head>
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17672882689"
+          strategy="afterInteractive"
+        />
+        <Script id="google-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17672882689');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <ErrorBoundary>
           <Navbar />
