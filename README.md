@@ -457,6 +457,23 @@ This project is private and proprietary.
 
 For support, email: info@visions.services
 
+## ENV
+```
+NODE_ENV=production
+NEXT_PUBLIC_SITE_URL=https://visions.services
+POSTGRES_HOST=visions.postgres.database.azure.com
+POSTGRES_DB=visions
+POSTGRES_USER=Gagan
+POSTGRES_PASSWORD=Services@1507
+POSTGRES_PORT=5432
+POSTGRES_SSL=true
+JWT_SECRET=e2c6324c8caebd86af2391cdcbe1851877a48eca1d2361f86b07be5ae6f1ece7
+ADMIN_SESSION_DURATION=86400
+ALLOWED_ORIGINS=https://visions.services,https://www.visions.services
+```
+
 ---
 
 **Built with ❤️ using Next.js 15, React 18, and TypeScript**
+
+
