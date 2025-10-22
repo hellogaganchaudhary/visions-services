@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { query } from '@/lib/db';
 import bcrypt from 'bcryptjs';
 import { generateToken } from '@/lib/auth';
-import { isPreflight, handlePreflight, jsonResponse } from '@/lib/cors';
+import { handlePreflight, jsonResponse } from '@/lib/cors';
 
 export async function OPTIONS(request: NextRequest) {
   return handlePreflight(request);
@@ -82,7 +82,9 @@ export async function POST(request: NextRequest) {
       ]
     );
 
-    console.log('Admin login successful:', username);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Admin login successful:', username);
+    }
 
     return jsonResponse(
       {

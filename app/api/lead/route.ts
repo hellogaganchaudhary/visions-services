@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { query } from '@/lib/db';
 import validator from 'validator';
-import { isPreflight, handlePreflight, jsonResponse } from '@/lib/cors';
+import { handlePreflight, jsonResponse } from '@/lib/cors';
 
 export async function OPTIONS(request: NextRequest) {
   return handlePreflight(request);
@@ -45,7 +45,9 @@ export async function POST(request: NextRequest) {
       [sanitized.name, sanitized.email, sanitized.phone, sanitized.requirement, sanitized.budget, sanitized.company, 'new', 'medium']
     );
 
-    console.log('Lead form submitted:', sanitized.email);
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Lead form submitted:', sanitized.email);
+    }
 
     return jsonResponse(
       {

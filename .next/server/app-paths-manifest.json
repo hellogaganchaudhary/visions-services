@@ -1,1 +1,24 @@
-{}
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/api-admin/contacts/route": "app/api/api-admin/contacts/route.js",
+  "/api/api-admin/leads/route": "app/api/api-admin/leads/route.js",
+  "/api/api-admin/quotes/route": "app/api/api-admin/quotes/route.js",
+  "/api/api-admin/login/route": "app/api/api-admin/login/route.js",
+  "/api/contact/route": "app/api/contact/route.js",
+  "/api/lead/route": "app/api/lead/route.js",
+  "/api/quote/route": "app/api/quote/route.js",
+  "/api/api-admin/status/route": "app/api/api-admin/status/route.js",
+  "/sitemap.xml/route": "app/sitemap.xml/route.js",
+  "/robots.txt/route": "app/robots.txt/route.js",
+  "/about/page": "app/about/page.js",
+  "/page": "app/page.js",
+  "/contact/page": "app/contact/page.js",
+  "/get-started/page": "app/get-started/page.js",
+  "/privacy-policy/page": "app/privacy-policy/page.js",
+  "/what-we-do/page": "app/what-we-do/page.js",
+  "/request-quote/page": "app/request-quote/page.js",
+  "/services/[slug]/page": "app/services/[slug]/page.js",
+  "/services/page": "app/services/page.js",
+  "/admin/login/page": "app/admin/login/page.js",
+  "/admin/dashboard/page": "app/admin/dashboard/page.js"
+}

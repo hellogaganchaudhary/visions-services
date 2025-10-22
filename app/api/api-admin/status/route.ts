@@ -1,7 +1,7 @@
 import { NextRequest } from 'next/server';
 import { query } from '@/lib/db';
 import { verifyToken } from '@/lib/auth';
-import { isPreflight, handlePreflight, jsonResponse } from '@/lib/cors';
+import { handlePreflight, jsonResponse } from '@/lib/cors';
 
 export async function OPTIONS(request: NextRequest) {
   return handlePreflight(request);
@@ -11,7 +11,10 @@ export async function PATCH(request: NextRequest) {
   try {
     // Verify authentication
     const user = verifyToken(request);
-    console.log('Authenticated user:', user.username);
+    
+    if (process.env.NODE_ENV === 'development') {
+      console.log('Authenticated user:', user.username);
+    }
 
     const body = await request.json();
     const { id, status, table } = body;
@@ -59,7 +62,9 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
-    console.log(`Status updated for ${table} ID ${id}:`, status);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`Status updated for ${table} ID ${id}:`, status);
+    }
 
     return jsonResponse(
       {

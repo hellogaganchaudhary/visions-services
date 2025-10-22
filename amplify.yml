@@ -4,16 +4,13 @@ frontend:
     preBuild:
       commands:
         - echo "Installing dependencies..."
-        - npm ci --include=dev
+        - npm ci
         - echo "Dependencies installed successfully"
     build:
       commands:
-        - echo "Building API..."
-        - npm run build:api
-        - echo "API built successfully"
-        - echo "Building Next.js frontend..."
-        - npm run build:next
-        - echo "Frontend built successfully"
+        - echo "Building Next.js application..."
+        - npm run build
+        - echo "Build completed successfully"
   artifacts:
     baseDirectory: .next
     files:
@@ -22,5 +19,3 @@ frontend:
     paths:
       - .next/cache/**/*
       - node_modules/**/*
-      - api/node_modules/**/*
-      - api/dist/**/*
