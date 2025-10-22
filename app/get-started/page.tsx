@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, ArrowRight, CheckCircle2, Phone, Mail, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 
 interface LeadFormData {
   name: string;
@@ -58,7 +58,7 @@ export default function GetStartedPage() {
 
       if (response.ok && data.success) {
         setStatus('success');
-        setMessage('Thank you! We\'ll contact you within 24 hours.');
+        setMessage('Thank you! We will contact you soon.');
         setFormData({ name: '', phone: '', requirement: '', budget: '' });
       } else {
         setStatus('error');
@@ -87,37 +87,12 @@ export default function GetStartedPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white mb-6">
-              <Sparkles className="w-4 h-4" />
-              <span className="text-sm font-medium">Limited Time Offer</span>
-            </div>
-            
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Transform Your Business
+              Get Started
               <span className="block bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
-                With Expert Solutions
+                With Your Project
               </span>
             </h1>
-            
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Get a free consultation and custom quote for your project. Our experts will contact you within 24 hours.
-            </p>
-
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap justify-center gap-6 text-white/90 mb-8">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-green-300" />
-                <span>Free Consultation</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-green-300" />
-                <span>24 Hour Response</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-green-300" />
-                <span>No Obligation</span>
-              </div>
-            </div>
           </motion.div>
 
           {/* Form Card */}
@@ -133,10 +108,10 @@ export default function GetStartedPage() {
                   <CheckCircle2 className="w-12 h-12 text-green-600" />
                 </div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-4">
-                  We Received Your Request!
+                  Request Submitted Successfully!
                 </h2>
                 <p className="text-lg text-gray-600 mb-8">
-                  Our team will contact you within 24 hours to discuss your project.
+                  Thank you for reaching out. Our team will contact you soon.
                 </p>
                 <button
                   onClick={() => setStatus('idle')}
@@ -149,11 +124,8 @@ export default function GetStartedPage() {
               <>
                 <div className="text-center mb-8">
                   <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                    Get Started Today
+                    Tell Us About Your Project
                   </h2>
-                  <p className="text-gray-600">
-                    Fill out this quick form and we'll reach out to you
-                  </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -249,7 +221,7 @@ export default function GetStartedPage() {
                       </>
                     ) : (
                       <>
-                        <span>Get Free Consultation</span>
+                        <span>Submit</span>
                         <ArrowRight className="w-5 h-5" />
                       </>
                     )}
@@ -262,30 +234,6 @@ export default function GetStartedPage() {
                 </form>
               </>
             )}
-          </motion.div>
-
-          {/* Additional Trust Signals */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mt-12 grid md:grid-cols-3 gap-6 text-center"
-          >
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <Zap className="w-8 h-8 text-yellow-300 mx-auto mb-3" />
-              <h3 className="text-white font-semibold mb-2">Quick Response</h3>
-              <p className="text-white/80 text-sm">We respond within 24 hours</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <Phone className="w-8 h-8 text-green-300 mx-auto mb-3" />
-              <h3 className="text-white font-semibold mb-2">Direct Contact</h3>
-              <p className="text-white/80 text-sm">Speak directly with experts</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6">
-              <Mail className="w-8 h-8 text-blue-300 mx-auto mb-3" />
-              <h3 className="text-white font-semibold mb-2">Custom Solutions</h3>
-              <p className="text-white/80 text-sm">Tailored to your needs</p>
-            </div>
           </motion.div>
         </div>
       </div>

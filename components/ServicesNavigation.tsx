@@ -217,75 +217,25 @@ export default function ServicesNavigation() {
                   />
                 </div>
 
-                {/* Categories */}
-                <div className="space-y-2">
-                  {filteredCategories.map((category) => {
+                {/* Service Categories Catalogue */}
+                <div className="space-y-4">
+                  {serviceCategories.map((category) => {
                     const CategoryIcon = category.icon;
-                    const isExpanded = expandedCategory === category.slug;
-
                     return (
-                      <div key={category.slug} className="space-y-2">
-                        {/* Category Header */}
-                        <button
-                          onClick={() => toggleCategory(category.slug)}
-                          className="w-full flex items-center justify-between p-4 rounded-xl backdrop-blur-xl transition-all"
-                          style={{
-                            background: isExpanded
-                              ? `linear-gradient(135deg, ${category.color}30, ${category.color}20)`
-                              : 'rgba(255,255,255,0.05)',
-                            border: `1px solid ${isExpanded ? category.color + '40' : 'transparent'}`,
-                          }}
-                        >
-                          <div className="flex items-center gap-3">
-                            <CategoryIcon className="w-5 h-5" style={{ color: category.color }} />
-                            <span className="font-semibold text-white">{category.name}</span>
-                            <span className="text-xs text-gray-400">({category.services.length})</span>
-                          </div>
-                          <motion.div
-                            animate={{ rotate: isExpanded ? 90 : 0 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <ChevronRight className="w-5 h-5 text-gray-400" />
-                          </motion.div>
-                        </button>
-
-                        {/* Services List */}
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden pl-4 space-y-1"
-                            >
-                              {category.services.map((service) => {
-                                const ServiceIcon = service.icon;
-                                return (
-                                  <Link
-                                    key={service.slug}
-                                    href={`/services/${service.slug}`}
-                                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 transition-colors group"
-                                  >
-                                    <ServiceIcon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
-                                    <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
-                                      {service.name}
-                                    </span>
-                                  </Link>
-                                );
-                              })}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                      <div key={category.slug} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                        <CategoryIcon className="w-8 h-8" style={{ color: category.color }} />
+                        <div>
+                          <div className="font-semibold text-lg text-white mb-1">{category.name}</div>
+                          <div className="text-gray-400 text-sm mb-1">{category.services.length} services</div>
+                          <div className="text-gray-300 text-xs">{category.slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}</div>
+                        </div>
                       </div>
                     );
                   })}
                 </div>
-
-                {/* View All Services Button */}
                 <Link
                   href="/services"
-                  className="block w-full py-4 px-6 rounded-xl text-center font-bold text-white transition-all"
+                  className="block w-full py-4 px-6 rounded-xl text-center font-bold text-white transition-all mt-6"
                   style={{
                     background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.9), rgba(139, 92, 246, 0.9))',
                   }}

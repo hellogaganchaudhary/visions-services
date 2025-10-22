@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageTransition from "@/components/PageTransition";
-import ServicesNavigation from "@/components/ServicesNavigation";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { generateSEO } from "@/lib/seo";
 import Script from "next/script";
@@ -74,7 +73,6 @@ export default function RootLayout({
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans antialiased`}>
         <ErrorBoundary>
           <Navbar />
-          <ServicesNavigation />
           <PageTransition>
             <main className="min-h-screen">
               {children}

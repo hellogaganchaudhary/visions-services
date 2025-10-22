@@ -58,8 +58,14 @@ const Navbar = () => {
               </Link>
             ))}
             
-            {/* Services Mega Menu */}
-            <ServicesMegaMenu />
+            {/* Single Services Link */}
+            <Link
+              href="/services"
+              className="text-gray-300 hover:text-white transition-colors relative group"
+            >
+              Services
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-accent-500 group-hover:w-full transition-all duration-300"></span>
+            </Link>
             
             <Link href="/request-quote">
               <motion.button
@@ -96,6 +102,16 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+            
+            {/* Services Link for Mobile */}
+            <Link
+              href="/services"
+              className="block text-gray-300 hover:text-white py-2 transition-colors"
+              onClick={() => setIsOpen(false)}
+            >
+              Services
+            </Link>
+            
             <Link href="/request-quote" className="block" onClick={() => setIsOpen(false)}>
               <button className="w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-2 rounded-full font-semibold mt-4">
                 Get Quote
